@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container" >
+    <h1>My tasks</h1>
+
+    <form method="post">
+        {{form.hidden_tag()}}
+        {{form.user_id(type ="hidden", value = current_user.id)}}
+        <br>{{form.task(class="form-control", placeholder="Create new task")}}
+        <br>
+        {{form.submit(class="btn btn-primary")}}
+    </form>
+    <br>
+
+
+
+    {% for task in user_tasks %}
+
+    {% if task.status == "Done" %}
+    <div class="card" style="margin-bottom: 1em;">
+        <div class="card-header">
+          
+        </div>
+        <div class="card-body" style="background-color: #ecfdec;">
+          <blockquote class="blockquote mb-0">
+            <p>{{task.task}}</p>
+            <footer class="blockquote-footer"> {{task.status}}
+                <div style="display:inline; margin-left:1em">
+                <a href="{{url_for('tasks.delete_task', id=task.id)}}" type="button" class="btn btn-outline-danger btn-sm" >Delete</a>
+                <a href="{{url_for('tasks.task_waiting', id=task.id)}}" type="button" class="btn btn-outline-dark btn-sm" >Mark as waiting</a>
+            </div>
+            </footer>
+
+          </blockquote>
+        </div>
+      </div>
+      {% else %}
+    
+    
+    <div class="card" style="margin-bottom: 1em;">
+        <div class="card-header">
+          
+        </div>
+        <div class="card-body">
+          <blockquote class="blockquote mb-0">
+            <p>{{task.task}}</p>
+            <footer class="blockquote-footer"> {{task.status}}
+                <div style="display:inline; margin-left:1em">
+                <a href="{{url_for('tasks.delete_task', id=task.id)}}" type="button" class="btn btn-outline-danger btn-sm" >Delete</a>
+                <a href="{{url_for('tasks.task_done', id=task.id)}}" type="button" class="btn btn-outline-success btn-sm" >Mark as done</a>     
+            </div>
+                         
+            </footer>
+          </blockquote>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+
+
+</div>
+
+
+{% endblock%}

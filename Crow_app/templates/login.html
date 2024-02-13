@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container" align="center">
+    <h1>Login</h1>
+    <br>
+    <form method="post">
+        {{form.hidden_tag()}}
+        {{form.username.label}}<br>{{form.username}}<br>
+        {{form.password.label}}<br>{{form.password}}<br>
+        <br>{{form.submit(class="btn btn-primary")}}
+    </form>
+    <br>
+    {% if msg != "none" %}
+    <div class="alert alert-danger" role="alert">
+        {{msg}}
+    </div>
+    {% endif %}
+</div>
+
+
+
+{% endblock %}
+

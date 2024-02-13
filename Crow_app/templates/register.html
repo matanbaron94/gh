@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container" align="center">
+    <h1>Register</h1>
+    <br>
+    <form method="post">
+        {{form.hidden_tag()}} 
+        {{form.email.label}}<br>{{form.email}}<br>
+        {{form.username.label}}<br>{{form.username}}<br>
+        {{form.password.label}}<br>{{form.password}}<br>
+        {{form.password_confirmation.label}}<br>{{form.password_confirmation}}<br>
+        <br>{{form.submit(class="btn btn-primary")}}
+        
+    </form>
+    <br>
+    {% if msg != "none" %}
+    <div class="alert alert-danger" role="alert">
+        {{msg}}
+    </div>
+    {% endif %}
+    
+
+</div>
+
+{% endblock %}
+

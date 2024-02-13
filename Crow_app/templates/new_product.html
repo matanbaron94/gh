@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container" >
+    <h1>New product</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {{form.hidden_tag()}} 
+        {{form.user_id(type ="hidden", value = current_user.id)}}
+        {{form.owner(type ="hidden", value = current_user.username)}}
+        {{form.name.label}}<br>{{form.name(class="form-control")}}<br>
+        {{form.description.label}}<br>{{form.description(class="form-control")}}<br>
+        {{form.part_id.label}}<br>{{form.part_id(class="form-control")}}<br>
+        {{form.main_photo.label}}<br><input type = "file" name = "file" class="form-control")/><br>
+        {{form.status.label}}<br>{{form.status(class="form-control")}}<br>
+        <br>{{form.submit(class="btn btn-primary")}}
+        
+    </form>
+
+
+</div>
+
+
+{% endblock%}
